@@ -1,30 +1,23 @@
 import 'package:fluro/fluro.dart';
-import 'package:flutter_web/ui/views/counter_provider_view.dart';
-import 'package:flutter_web/ui/views/counter_view.dart';
-import 'package:flutter_web/ui/views/view_404.dart';
+import 'package:flutter_web/router/route_handlers.dart';
 
 class Flurorouter {
   static final FluroRouter router = FluroRouter();
 
   static void configureRoutes() {
     router.define('/',
-        handler: _counterHandler, transitionType: TransitionType.fadeIn);
+        handler: counterHandler, transitionType: TransitionType.fadeIn);
+    //Stateful routes
     router.define('/stateful',
-        handler: _counterHandler, transitionType: TransitionType.fadeIn);
+        handler: counterHandler, transitionType: TransitionType.fadeIn);
     router.define('/stateful/:base',
-        handler: _counterHandler, transitionType: TransitionType.fadeIn);
+        handler: counterHandler, transitionType: TransitionType.fadeIn);
+    //Provider routes
     router.define('/provider',
-        handler: _counterProviderHandler,
-        transitionType: TransitionType.fadeIn);
-    router.notFoundHandler = _pageNotFound;
+        handler: counterProviderHandler, transitionType: TransitionType.fadeIn);
+    router.define('/dashboard/users/:userid/:roleid',
+        handler: dashboardUserHandler, transitionType: TransitionType.fadeIn);
+    //404 Not Found
+    router.notFoundHandler = pageNotFound;
   }
-
-  static Handler _counterHandler = Handler(
-      handlerFunc: (context, params) =>
-          CounterView(base: params['base']?[0] ?? '0'));
-
-  static Handler _counterProviderHandler =
-      Handler(handlerFunc: (context, params) => CounterProviderView());
-
-  static Handler _pageNotFound = Handler(handlerFunc: (_, __) => View404());
 }
