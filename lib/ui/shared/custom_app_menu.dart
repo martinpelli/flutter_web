@@ -40,6 +40,13 @@ class _TabletDesktopMenu extends StatelessWidget {
             text: 'Otra Pagina',
             onPressed: () => locator<NavigationService>().navigateTo('/404'),
             color: Colors.black,
+          ),
+          SizedBox(width: 10),
+          CustomFlatButton(
+            text: 'Stateful 100',
+            onPressed: () =>
+                locator<NavigationService>().navigateTo('/stateful/100'),
+            color: Colors.black,
           )
         ],
       ),
@@ -73,6 +80,13 @@ class _MobileMenu extends StatelessWidget {
           CustomFlatButton(
             text: 'Otra Pagina',
             onPressed: () => locator<NavigationService>().navigateTo('/404'),
+            color: Colors.black,
+          ),
+          SizedBox(width: 10),
+          CustomFlatButton(
+            text: 'Stateful 100',
+            onPressed: () =>
+                locator<NavigationService>().navigateTo('/stateful/100'),
             color: Colors.black,
           )
         ],
